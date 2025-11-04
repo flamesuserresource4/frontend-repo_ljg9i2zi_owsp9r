@@ -9,7 +9,9 @@ const team = [
 
 export default function TeamContact() {
   return (
-    <section id="contact" className="relative py-24 bg-white dark:bg-black">
+    <section id="contact" className="relative py-24 bg-white dark:bg-black overflow-hidden">
+      <div className="pointer-events-none absolute -right-40 -bottom-40 w-[60rem] h-[60rem] rounded-full bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-fuchsia-500/10 blur-3xl" />
+
       <div className="mx-auto w-full max-w-7xl px-6 md:px-8">
         <div className="grid lg:grid-cols-2 gap-12">
           <div>
@@ -22,13 +24,14 @@ export default function TeamContact() {
                   key={m.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
                   viewport={{ once: true, amount: 0.4 }}
-                  className="rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40"
+                  className="group relative rounded-2xl p-4 border border-zinc-200 dark:border-zinc-800 bg-white/60 dark:bg-zinc-900/40"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500" />
-                  <h3 className="mt-3 font-semibold text-zinc-900 dark:text-zinc-100">{m.name}</h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">{m.role}</p>
+                  <span className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.18),transparent_60%)]" />
+                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500" />
+                  <h3 className="relative mt-3 font-semibold text-zinc-900 dark:text-zinc-100">{m.name}</h3>
+                  <p className="relative text-sm text-zinc-600 dark:text-zinc-400">{m.role}</p>
                 </motion.div>
               ))}
             </div>
@@ -42,8 +45,9 @@ export default function TeamContact() {
               <input type="text" placeholder="Full name" className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
               <input type="email" placeholder="Email" className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
               <textarea rows="4" placeholder="What are you building?" className="w-full px-4 py-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500" />
-              <button type="submit" className="mt-2 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-500 transition">
-                <Phone size={18} /> Request callback
+              <button type="submit" className="relative mt-2 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-medium overflow-hidden">
+                <span className="absolute inset-0 rounded-xl opacity-0 hover:opacity-100 transition-opacity bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.35),transparent_60%)]" />
+                <span className="relative flex items-center gap-2"><Phone size={18} /> Request callback</span>
               </button>
             </form>
           </div>
