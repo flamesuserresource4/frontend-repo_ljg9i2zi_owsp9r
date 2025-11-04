@@ -1,30 +1,22 @@
-import React from 'react';
 import Hero from './components/Hero';
 import Features from './components/Features';
 import Pricing from './components/Pricing';
 import TeamContact from './components/TeamContact';
 
-const App = () => {
+export default function App() {
   return (
-    <div className="min-h-screen bg-slate-950 font-inter text-white">
-      {/* Simple translucent navbar */}
-      <header className="fixed left-0 right-0 top-0 z-50 mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-md">
-        <a href="#home" className="flex items-center gap-2 font-semibold">
-          <span className="inline-block h-2 w-2 rounded-full bg-cyan-300" />
-          FinCard
-        </a>
-        <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-          <a className="hover:text-white" href="#features">Features</a>
-          <a className="hover:text-white" href="#pricing">Pricing</a>
-          <a className="hover:text-white" href="#about">Team</a>
-          <a className="hover:text-white" href="#contact">Contact</a>
+    <div className="min-h-screen bg-white dark:bg-black">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-black/40 border-b border-zinc-200/60 dark:border-zinc-800/60">
+        <nav className="mx-auto max-w-7xl px-6 md:px-8 h-16 flex items-center justify-between">
+          <a href="#home" className="text-lg font-semibold text-zinc-900 dark:text-white">VibeSaaS</a>
+          <div className="hidden md:flex items-center gap-6 text-sm text-zinc-700 dark:text-zinc-300">
+            <a href="#features" className="hover:text-zinc-900 dark:hover:text-white">Features</a>
+            <a href="#pricing" className="hover:text-zinc-900 dark:hover:text-white">Pricing</a>
+            <a href="#contact" className="hover:text-zinc-900 dark:hover:text-white">Contact</a>
+          </div>
+          <a href="#pricing" className="hidden md:inline-flex px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900">Get started</a>
         </nav>
-        <a
-          href="#pricing"
-          className="rounded-xl bg-cyan-400/90 px-3 py-2 text-sm font-medium text-slate-900 transition hover:bg-cyan-300"
-        >
-          Get Started
-        </a>
       </header>
 
       <main>
@@ -34,13 +26,16 @@ const App = () => {
         <TeamContact />
       </main>
 
-      <footer className="border-t border-white/10 bg-slate-950/80 py-10 text-center text-sm text-slate-400">
-        <div className="mx-auto max-w-7xl px-6">
-          <p>© {new Date().getFullYear()} FinCard. All rights reserved.</p>
+      <footer className="border-t border-zinc-200 dark:border-zinc-800">
+        <div className="mx-auto max-w-7xl px-6 md:px-8 h-16 flex items-center justify-between text-sm text-zinc-600 dark:text-zinc-400">
+          <p>© {new Date().getFullYear()} VibeSaaS. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <a href="#features" className="hover:text-zinc-900 dark:hover:text-white">Features</a>
+            <a href="#pricing" className="hover:text-zinc-900 dark:hover:text-white">Pricing</a>
+            <a href="#contact" className="hover:text-zinc-900 dark:hover:text-white">Contact</a>
+          </div>
         </div>
       </footer>
     </div>
   );
-};
-
-export default App;
+}

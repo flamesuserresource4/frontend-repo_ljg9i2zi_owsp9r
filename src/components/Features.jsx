@@ -1,64 +1,56 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, CreditCard } from 'lucide-react';
+import { Rocket, Shield, Zap, BarChart3 } from 'lucide-react';
 
 const features = [
   {
-    icon: <Shield className="h-6 w-6 text-cyan-300" />,
-    title: 'Bank‑level security',
-    desc: 'Built with secure defaults and best practices to keep your data safe at every step.',
+    icon: Rocket,
+    title: 'Launch Faster',
+    desc: 'Prebuilt components and motion patterns to ship in days, not weeks.'
   },
   {
-    icon: <Zap className="h-6 w-6 text-cyan-300" />,
-    title: 'Blazing fast',
-    desc: 'Optimized React components and animations that feel fluid on every device.',
+    icon: Shield,
+    title: 'Secure by Default',
+    desc: 'Best practices baked in with robust, audited dependencies.'
   },
   {
-    icon: <CreditCard className="h-6 w-6 text-cyan-300" />,
-    title: 'Fintech‑ready UI',
-    desc: 'Glassmorphic aesthetics paired with a 3D credit card experience for instant trust.',
+    icon: Zap,
+    title: 'Blazing Performance',
+    desc: 'Smooth 60fps animations and optimized rendering out of the box.'
   },
+  {
+    icon: BarChart3,
+    title: 'Actionable Insights',
+    desc: 'Measure engagement and conversion with built-in analytics patterns.'
+  }
 ];
 
-const Features = () => {
+export default function Features() {
   return (
-    <section id="features" className="relative w-full bg-slate-950 py-24 text-white">
-      <div className="absolute inset-0 -z-0 bg-[radial-gradient(ellipse_at_top_left,rgba(56,189,248,0.08),transparent_60%)]" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
-        >
-          Features that convert
-        </motion.h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-slate-300">
-          Everything you need to communicate value clearly and drive signups.
-        </p>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="features" className="relative py-24 bg-white dark:bg-black">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Features that move people</h2>
+          <p className="mt-3 text-zinc-600 dark:text-zinc-400">Thoughtful details, delightful interactions, and solid foundations.</p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((f, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-md transition hover:border-white/20 hover:bg-white/10"
+              key={f.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              viewport={{ once: true, amount: 0.4 }}
+              className="group rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white/60 dark:bg-zinc-900/40 backdrop-blur hover:shadow-xl transition"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/10 ring-1 ring-cyan-300/20">
-                {f.icon}
+              <div className="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                <f.icon />
               </div>
-              <h3 className="mt-4 text-lg font-semibold text-white">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">{f.desc}</p>
+              <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">{f.title}</h3>
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{f.desc}</p>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Features;
+}

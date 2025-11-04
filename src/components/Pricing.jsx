@@ -1,95 +1,69 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const tiers = [
   {
     name: 'Starter',
-    price: '$9',
-    period: '/mo',
-    highlight: false,
-    features: ['All core features', 'Email support', 'Basic analytics'],
+    price: 0,
+    desc: 'For testing ideas and quick demos.',
+    features: ['Unlimited previews', 'Community support', 'Basic analytics']
   },
   {
     name: 'Pro',
-    price: '$29',
-    period: '/mo',
+    price: 29,
     highlight: true,
-    features: ['Everything in Starter', 'Priority support', 'Advanced analytics', 'Team collaboration'],
+    desc: 'For teams shipping to production.',
+    features: ['All Starter features', 'Priority support', 'Advanced analytics', 'Custom domains']
   },
   {
     name: 'Business',
-    price: '$99',
-    period: '/mo',
-    highlight: false,
-    features: ['Custom onboarding', 'Dedicated manager', 'SLA & security reviews'],
-  },
+    price: 99,
+    desc: 'For ambitious companies at scale.',
+    features: ['Everything in Pro', 'SLA & SSO', 'Audit logs', 'Dedicated success manager']
+  }
 ];
 
-const Pricing = () => {
+export default function Pricing() {
   return (
-    <section id="pricing" className="w-full bg-slate-950 py-24 text-white">
-      <div className="mx-auto max-w-7xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center text-3xl font-semibold tracking-tight md:text-4xl"
-        >
-          Simple, transparent pricing
-        </motion.h2>
-        <p className="mx-auto mt-3 max-w-2xl text-center text-slate-300">
-          Start small and scale as you grow. Cancel anytime.
-        </p>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+    <section id="pricing" className="relative py-24 bg-zinc-50 dark:bg-zinc-950">
+      <div className="mx-auto w-full max-w-7xl px-6 md:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Simple, transparent pricing</h2>
+          <p className="mt-3 text-zinc-600 dark:text-zinc-400">Start free. Upgrade when you’re ready.</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
           {tiers.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={`relative rounded-2xl border p-6 backdrop-blur-md ${
-                t.highlight
-                  ? 'border-cyan-300/40 bg-cyan-400/10 shadow-[0_20px_60px_-15px_rgba(34,211,238,0.35)]'
-                  : 'border-white/10 bg-white/5'
-              }`}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              viewport={{ once: true, amount: 0.4 }}
+              className={`relative rounded-2xl p-6 border ${t.highlight ? 'bg-white dark:bg-zinc-900 border-indigo-500 shadow-[0_0_0_1px_rgba(99,102,241,0.4)]' : 'bg-white/60 dark:bg-zinc-900/40 border-zinc-200 dark:border-zinc-800'}`}
             >
               {t.highlight && (
-                <span className="absolute -top-3 right-4 rounded-full bg-cyan-400/90 px-3 py-1 text-xs font-medium text-slate-900">
-                  Most Popular
-                </span>
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] px-2 py-0.5 rounded-full bg-indigo-600 text-white border border-indigo-400">Most Popular</span>
               )}
-              <h3 className="text-lg font-semibold">{t.name}</h3>
-              <div className="mt-2 flex items-end gap-1">
-                <span className="text-4xl font-bold">{t.price}</span>
-                <span className="pb-1 text-slate-300">{t.period}</span>
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">{t.name}</h3>
+              <div className="mt-2 flex items-baseline gap-1">
+                <span className="text-4xl font-bold text-zinc-900 dark:text-zinc-100">${t.price}</span>
+                <span className="text-sm text-zinc-500">/mo</span>
               </div>
-              <ul className="mt-6 space-y-3 text-sm text-slate-300">
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{t.desc}</p>
+              <ul className="mt-4 space-y-2">
                 {t.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2">
-                    <Check className="h-4 w-4 text-cyan-300" /> {f}
+                  <li key={f} className="flex items-center gap-2 text-sm text-zinc-700 dark:text-zinc-300">
+                    <Check className="text-emerald-500" size={16} /> {f}
                   </li>
                 ))}
               </ul>
-              <a
-                href="#contact"
-                className={`mt-8 inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium transition ${
-                  t.highlight
-                    ? 'bg-cyan-400/90 text-slate-900 hover:bg-cyan-300'
-                    : 'border border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10'
-                }`}
-              >
-                Choose {t.name}
-              </a>
+              <button className={`mt-6 w-full py-2 rounded-xl font-medium ${t.highlight ? 'bg-indigo-600 text-white hover:bg-indigo-500' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700'} transition`}>
+                {t.highlight ? 'Get Pro' : 'Choose plan'}
+              </button>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Pricing;
+}
